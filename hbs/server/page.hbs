@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/css/bundle.css">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src="/static/js/bundle.js"></script>
+
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <nav>
+                <ul>
+                    <li data-nav="top">A + C</li>
+                    <li data-nav="event-info">Event Info</li>
+                    <li data-nav="registry">Registry</li>
+                    <li data-nav="rehearsal">Rehearsal Party</li>
+                    <li data-nav="accomodations">Accomodations</li>
+                    <li data-nav="rsvp">RSVP</li>
+                </ul>
+            </nav>
+            <div data-content="top" class="row">
+                <div class="col-sm-offset-1 col-sm-8 pull-right">
+                    <div class="row">Alex and Chris</div>
+                    <div class="row">09.24.2016</div>
+                </div>
+                <div class="col-sm-3">
+                </div>
+            </div>
+            <div data-content="event-info" class="row">
+                <div>Event Info</div>
+                <div class="col-sm-3 pull-right">
+                    <div class="pink">Kirkbride Hall</div>
+                    <div class="white">700 Cottageview Dr.</div>
+                    <div class="white">Traverse City, MI 49684</div>
+                    <div class="pink">Ceremony at 4:30pm</div>
+                    <div class="white">Dinner and Dancing to follow</div>
+                    <canvas></canvas>
+                    <div class="pink">Please join us at our Rehearsal Party on Friday!</div>
+                    <div class="white">Click here for more info</div>
+                </div>
+            </div>
+            <div data-content="registry" class="row">
+                <div>Registry</div>
+                <div>Macy's</div>
+                <canvas></canvas>
+                <div>Amazon</div>
+                <canvas></canvas>
+                <div>Target</div>
+            </div>
+            <div data-content="rehearsal" class="row">
+                <div>Rehearsal Party</div>
+                <div>
+                    <span>Friday</span>
+                    <span class="pinkball"></span>
+                    <span>9.23.2016</span>
+                    <span class="pinkball"></span>
+                    <span>7:00pm</span>
+                </div>
+                <div>Please join us for dinner and celebration</div>
+                <div>on Friday night before our wedding.</div>
+                <div>Location TBD</div>
+            </div>
+            <div data-content="accomodations" class="row">
+                <div class="col-sm-6 col-sm-offset-6">
+                    <div>Accomodations and Travel</div>
+                    <div>
+                        <span>Hotels:</span>
+                        <span>TBD</span>
+                    </div>
+                    <canvas></canvas>
+                    <div>
+                        <span>Airports:</span>
+                        <span>Cherry Capital Airport (TVC)</span>
+                    </div>
+                    <div>
+                        <span></span>
+                        <span>Gerry R. Ford Airport (GRR)</span>
+                    </div>
+                </div>
+            </div>
+            <div data-content="rsvp" class="row">
+                <div>RSVP</div>
+                <div>Coming Soon!</div>
+            </div>
+        </div>
+    </body>
+</html>

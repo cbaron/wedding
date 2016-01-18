@@ -1,0 +1,30 @@
+{
+  "description": "Wedding",
+  "engines": {
+    "node": "5.1.0"
+  },
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "gulp": "^3.9.0",
+    "handlebars": "^4.0.5",
+    "node-env-file": "^0.1.8",
+    "node-static": "^0.7.7"
+  },
+  "devDependencies": {
+    "babelify": "^7.2.0",
+    "grunt-contrib-handlebars": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-less": "^3.0.5",
+    "gulp-plumber": "^1.0.1",
+    "gulp-watch": "^4.3.5",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "license": "BSD-3-Clause",
+  "name": "Wedding",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cbaron/wedding.git"
+  },
+  "version": "0.0.1"
+}
