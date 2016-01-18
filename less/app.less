@@ -1,8 +1,21 @@
 @font-face {
-  font-family: 'FuturaCondensedMedium';
+  font-family: 'FuturaCondensedNormal';
   font-weight: 400;
-  src: url('/static/fonts/Futura-CondensedMedium.ttf');
+  src: url('/static/fonts/FuturaCondensedNormal.ttf') format('truetype'),
+       url('/static/fonts/FuturaCondensedNormal.woff') format('woff');
 }
+
+@font-face {
+  font-family: 'Desdemona';
+  font-weight: 400;
+  src: url('/static/fonts/desdemona.ttf') format('truetype'),
+       url('/static/fonts/desdemona.woff') format('woff');
+}
+
+@darkgreen: #2b4444;
+@green: #68a390;
+@pink: #ddb7ac;
+@purple: #503952;
 
 .modal-backdrop {
     bottom: 0;
@@ -14,6 +27,7 @@ html {
 }
 
 body {
+    font-family: 'FuturaCondensedNormal';
     height: 100%;
 }
 
@@ -24,7 +38,166 @@ ul, li {
 }
 
 nav {
-    font-size: 2rem;
-    line-height: 3em;
+    font-size: 1rem;
+    line-height: 2em;
+    padding: 15px 0px;
+    position: fixed;
     text-align: center;
+    width: 100%;
+
+    li {
+        display: inline;
+        padding: 0px 20px;
+    }
+}
+
+.block {
+    height: 100%;
+}
+
+.heading {
+    font-family: 'Desdemona';
+    font-size: 5rem;
+    line-height: 1em;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.top {
+
+    background-color: @purple;
+    color: white;
+
+    >div {
+        display: table;
+        >div {
+            display: table-cell;
+            text-align: right;
+            margin: auto 0px;
+            vertical-align: middle;
+        }
+    }
+
+    .names {
+        font-family: 'Desdemona';
+        font-size: 4rem;
+    }
+
+    .date {
+        font-size: 3rem;
+    }
+}
+
+.event-info {
+    background-color: @green;
+
+    .heading {
+        color: @purple;
+    }
+
+    .sub-heading {
+        color: @pink;
+        font-size: 2.75rem;
+    }
+    
+    .text {
+        color: white;
+        font-size: 1.25rem;
+        margin-left: 10px;
+    }
+    
+    .pink-text {
+        color: @pink;
+        font-size: 1.75rem;
+    }
+}
+
+.registry {
+
+    background-color: @pink;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+
+    .heading {
+        color: @darkgreen;
+    }
+
+}
+
+.rehearsal {
+
+    background-color: @darkgreen;
+    color: white;
+    font-size: 2em;
+
+    >div>div+div {
+        margin-top: 30px;
+    }
+
+    span {
+        margin: 0px 5px;
+    }
+
+    .heading {
+        color: @pink
+    }
+
+    .pinkball {
+        background-color: @pink;
+        border: 1px solid white;
+        border-radius: 10px;
+        display: inline-block;
+        height: 10px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        width: 10px;
+    }
+    
+}
+
+.accomodations {
+
+    background-color: white;
+    color: @darkgreen;
+    font-size: 2em;
+
+    .heading {
+        color: @purple;
+    }
+}
+
+.rsvp {
+    background-color: @purple; 
+    color: white;
+
+    .text-center {
+        font-size: 4rem;
+    }
+}
+
+.about {
+    background-color: @green;
+
+    .heading {
+        color: @purple;
+    }
+
+    .text {
+        font-size: 2rem;
+        text-align: center;
+
+        div+div {
+            margin-top: 30px;
+        }
+
+        >div:nth-child(even) {
+            color: white;
+        }
+
+        >div:nth-child(odd) {
+            color: @pink;
+        }
+    }
 }

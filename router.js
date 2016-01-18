@@ -60,8 +60,8 @@ Object.assign( Router.prototype, MyObject.prototype, {
         request.setEncoding('utf8');
 
         if( ( request.method === "GET" && path[1] === "static" ) || path[1] === "favicon.ico" ) {
-            return request.addListener( 'end', () => this.staticFolder.serve( request, response ) )
-
+            return request.addListener( 'end', this.serveStaticFile.bind( this, request, response ) ).resume() }
+        
         if( /text\/html/.test( request.headers.accept ) ) {
             return this.applyHTMLResource( request, response, path ).catch( err => this.handleFailure( response, err ) )
         } else if( ( /application\/json/.test( request.headers.accept ) || /(POST|PATCH|DELETE)/.test(request.method) ) &&
@@ -77,10 +77,12 @@ Object.assign( Router.prototype, MyObject.prototype, {
     },
 
     initialize() {
-        this.staticFolder = new (require('node-static').Server)();
+        this.staticFolder = new (require('node-static').Server)()
 
-        return this;
+        return this
     },
+    
+    serveStaticFile( request, response ) { this.staticFolder.serve( request, response ) },
 
     url: require( 'url' )
 
