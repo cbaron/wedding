@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'FuturaCondensedNormal';
   font-weight: 400;
-  src: url("/static/fonts/FuturaCondensedNormal.ttf") format('truetype'), url("/static/fonts/FuturaCondensedNormal.woff") format('woff');
+  src: url("/static/fonts/FuturaCondensedNormal.woff") format('woff');
 }
 
 @font-face {
@@ -47,14 +47,25 @@ nav li {
 
 .block {
   height: 100%;
+  overflow: hidden;
+}
+
+.table {
+  display: table;
+  height: 100%;
+  margin-bottom: 0px;
+}
+
+.cell {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .heading {
   font-family: 'Desdemona';
   font-size: 5rem;
   line-height: 1em;
-  margin-top: 60px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   text-align: center;
 }
 
@@ -69,8 +80,6 @@ nav li {
 
 .top > div > div {
   display: table-cell;
-  text-align: right;
-  margin: auto 0px;
   vertical-align: middle;
 }
 
