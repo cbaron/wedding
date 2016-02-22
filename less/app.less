@@ -21,13 +21,26 @@
 }
 
 html {
-    font-size: 100%;
+    font-size: 1rem;
     height: 100%;
 }
 
 body {
     font-family: 'FuturaCondensedNormal';
     height: 100%;
+}
+
+a {
+    color: white;
+
+    &:focus {
+        color: white;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: white;
+    }
 }
 
 ul, li {
@@ -37,17 +50,26 @@ ul, li {
 }
 
 nav {
+    background-color: #383838;
+    color: white;
+    filter: alpha(opacity=70);
     font-size: 1rem;
     line-height: 2em;
-    padding: 15px 0px;
+    opacity: 0.7;
+    padding: 10px 0px;
     position: fixed;
     text-align: center;
     width: 100%;
     z-index: 100;
 
     li {
+        cursor: pointer;
         display: inline;
         padding: 0px 20px;
+
+        &:hover {
+            color: #bebebe;
+        }
     }
 }
 
@@ -139,7 +161,7 @@ nav {
 
     background-color: @darkgreen;
     color: white;
-    font-size: 2em;
+    font-size: 2rem;
 
     >div>div+div {
         margin-top: 30px;
@@ -150,7 +172,8 @@ nav {
     }
 
     .heading {
-        color: @pink
+        color: @pink;
+        font-size: 5rem;
     }
 
     .pinkball {
@@ -170,10 +193,14 @@ nav {
 
     background-color: white;
     color: @darkgreen;
-    font-size: 2em;
+    font-size: 2rem;
 
     .heading {
         color: @purple;
+    }
+
+    svg {
+        margin: 10px 0px;
     }
 }
 
@@ -207,6 +234,105 @@ nav {
 
         >div:nth-child(odd) {
             color: @pink;
+        }
+    }
+}
+
+.rehearsal-link {
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.mobile-menu-btn {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: white;
+    font-size: 2rem;
+    float: right;
+    margin: 8px 15px 8px 0px;
+    padding: 9px 10px 6px 10px;
+}
+
+@media (max-height: 500px) {
+
+    html {
+        font-size: .75rem;
+    }
+
+    .event-info .heading {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 785px) {
+
+    html {
+        font-size: .5rem;
+    }
+
+    iframe {
+       display: none; 
+    }
+
+    nav {
+        background-color: transparent;
+    }
+
+    .mobile-menu-btn {
+        background-color: #383838;
+    }
+
+    .event-info {
+
+        .content {
+            text-align: center!important;
+        }
+
+        .sub-heading {
+            color: @pink;
+            font-size: 4rem;
+        }
+        
+        .text {
+            color: white;
+            font-size: 2rem;
+            margin-left: 10px;
+        }
+        
+        .pink-text {
+            color: @pink;
+            font-size: 3rem;
+        }
+    }
+
+    .rehearsal {
+        font-size: 2.5rem;
+    }
+
+    .accomodations {
+
+        font-size: 3rem;
+
+        .hotels {
+            text-align: center;
+
+            div {
+                display: inline-block;
+            }
+        }
+
+        .airport {
+            text-align: center;
+        }
+
+        svg {
+            display: block;
+            margin: 20px auto;
         }
     }
 }

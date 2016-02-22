@@ -15,6 +15,8 @@ Object.assign( Page.prototype, {
             var $el = this.$(el)
             $el.on( 'click', () => this.body.animate( { scrollTop: this.content[ $el.attr('data-nav') ].position().top }, 1000 ) )
         } ) 
+
+        this.body.find('[data-js="rehearsalLink"]').click( () => this.body.animate( { scrollTop: this.content.rehearsal.position().top }, 1000 ) )
         
         return this
     }

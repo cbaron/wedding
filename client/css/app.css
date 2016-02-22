@@ -12,12 +12,22 @@
   bottom: 0;
 }
 html {
-  font-size: 100%;
+  font-size: 1rem;
   height: 100%;
 }
 body {
   font-family: 'FuturaCondensedNormal';
   height: 100%;
+}
+a {
+  color: white;
+}
+a:focus {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: white;
 }
 ul,
 li {
@@ -26,17 +36,25 @@ li {
   margin: 0;
 }
 nav {
+  background-color: #383838;
+  color: white;
+  filter: alpha(opacity=70);
   font-size: 1rem;
   line-height: 2em;
-  padding: 15px 0px;
+  opacity: 0.7;
+  padding: 10px 0px;
   position: fixed;
   text-align: center;
   width: 100%;
   z-index: 100;
 }
 nav li {
+  cursor: pointer;
   display: inline;
   padding: 0px 20px;
+}
+nav li:hover {
+  color: #bebebe;
 }
 .block {
   height: 100%;
@@ -107,7 +125,7 @@ nav li {
 .rehearsal {
   background-color: #2b4444;
   color: white;
-  font-size: 2em;
+  font-size: 2rem;
 }
 .rehearsal > div > div + div {
   margin-top: 30px;
@@ -117,6 +135,7 @@ nav li {
 }
 .rehearsal .heading {
   color: #ddb7ac;
+  font-size: 5rem;
 }
 .rehearsal .pinkball {
   background-color: #ddb7ac;
@@ -131,10 +150,13 @@ nav li {
 .accomodations {
   background-color: white;
   color: #2b4444;
-  font-size: 2em;
+  font-size: 2rem;
 }
 .accomodations .heading {
   color: #503952;
+}
+.accomodations svg {
+  margin: 10px 0px;
 }
 .rsvp {
   background-color: #503952;
@@ -161,4 +183,78 @@ nav li {
 }
 .about .text > div:nth-child(odd) {
   color: #ddb7ac;
+}
+.rehearsal-link {
+  cursor: pointer;
+}
+.rehearsal-link:hover {
+  text-decoration: underline;
+}
+.mobile-menu-btn {
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: white;
+  font-size: 2rem;
+  float: right;
+  margin: 8px 15px 8px 0px;
+  padding: 9px 10px 6px 10px;
+}
+@media (max-height: 500px) {
+  html {
+    font-size: .75rem;
+  }
+  .event-info .heading {
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 785px) {
+  html {
+    font-size: .5rem;
+  }
+  iframe {
+    display: none;
+  }
+  nav {
+    background-color: transparent;
+  }
+  .mobile-menu-btn {
+    background-color: #383838;
+  }
+  .event-info .content {
+    text-align: center!important;
+  }
+  .event-info .sub-heading {
+    color: #ddb7ac;
+    font-size: 4rem;
+  }
+  .event-info .text {
+    color: white;
+    font-size: 2rem;
+    margin-left: 10px;
+  }
+  .event-info .pink-text {
+    color: #ddb7ac;
+    font-size: 3rem;
+  }
+  .rehearsal {
+    font-size: 2.5rem;
+  }
+  .accomodations {
+    font-size: 3rem;
+  }
+  .accomodations .hotels {
+    text-align: center;
+  }
+  .accomodations .hotels div {
+    display: inline-block;
+  }
+  .accomodations .airport {
+    text-align: center;
+  }
+  .accomodations svg {
+    display: block;
+    margin: 20px auto;
+  }
 }
