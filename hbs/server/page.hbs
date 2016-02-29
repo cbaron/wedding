@@ -7,23 +7,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script src="/static/js/babel-polyfill.js"></script>
         <script src="/static/js/bundle.js"></script>
+
 
         <title>{{title}}</title>
     </head>
     <body class="container-fluid">
         <nav class="row">
-            <div class="visible-xs-block">
-                <button id="mobile-menu" type="button" class="mobile-menu-btn">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </button>
-            </div>
-            <ul class="hidden-xs">
+            <button id="mobile-menu" type="button" class="mobile-menu-btn">
+                <span class="glyphicon glyphicon-menu-hamburger"></span>
+            </button>
+            <ul id="nav-list">
                 <li data-nav="top">A + C</li>
                 <li data-nav="event-info">Event Info</li>
                 <li data-nav="registry">Registry</li>
                 <li data-nav="rehearsal">Rehearsal Party</li>
-                <li data-nav="accomodations">Accomodations</li>
+                <li data-nav="accomodations">Accommodations</li>
                 <li data-nav="rsvp">RSVP</li>
                 <li data-nav="about">About Us</li>
             </ul>
@@ -60,8 +60,8 @@
             <div class="table">
                 <div class="cell">
                     <div class="heading">Event Info</div>
-                    <div class="col-sm-offset-1 col-sm-6">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZXJZGFBj5e5V59swy-zPQgY3aqZJcMGI&q=700+Cottageview+Dr,+Traverse+City,+MI+49684&center=44.7618911,-85.6286619" width="600" height="450" frameborder="0" style="border:0" allowfullscreen"></iframe>
+                    <div class="col-sm-offset-1 col-sm-6 map-wrap">
+                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCZXJZGFBj5e5V59swy-zPQgY3aqZJcMGI&q=700+Cottageview+Dr,+Traverse+City,+MI+49684&center=44.7618911,-85.6286619&zoom=14" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen"></iframe>
                     </div>
                     <div class="col-sm-offset-1 col-sm-3 text-left col-xs-8 col-xs-offset-2 content">
                         <div class="sub-heading">Kirkbride Hall</div>
@@ -148,11 +148,29 @@
         <div data-content="accomodations" class="row block accomodations">
             <div class="table">
                 <div class="cell">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="heading">Accomodations and Travel</div>
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="heading">Accommodations</div>
+                        <div class="sub-heading">
+                            <span>We suggest making hotel reservations</span>
+                            <span> as early as possible.</span>
+                            <span>  Traverse City is a popular tourist destination, and September remains a busy season for the area.  We have blocked rooms at two hotels, but feel free to explore other options.</span>
+                        </div>
                         <div class="row hotels">
-                            <div class="col-sm-2">Hotels:</div>
-                            <div class="col-sm-10">TBD</div>
+                            <div class="col-sm-3">Hotels:</div>
+                            <div class="col-sm-4 col-xs-6 hotel">
+                                <div>
+                                    <a href="http://www.bayshore-resort.com" target="_blank">Bayshore Resort</a>
+                                </div>
+                                <div>Group: Gillett/Baron Wedding</div>
+                                <div>Reserve by July 23, 2016</div>
+                            </div>
+                            <div class="col-sm-4 col-xs-6 hotel">
+                                <div>
+                                    <a href="http://www.westbaybeachresorttraversecity.com" target="_blank">West Bay Beach, A Holiday Inn Resort</a>
+                                </div>
+                                <div>Gillett & Baron Wedding Accommodations</div>
+                                <div>Reserve by August 9, 2016</div>
+                            </div>
                         </div>
                         <svg version="1.1"
                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
@@ -165,13 +183,22 @@
                                 <line fill="#FFFFFF" stroke="#503A51" stroke-miterlimit="10" x1="126.421" y1="7.943" x2="56.63" y2="7.943"/>
                             </g>
                         </svg>
-                        <div class="row airport">
-                            <div class="col-sm-2">Airports:</div>
-                            <div class="col-sm-10">Cherry Capital Airport (TVC)</div>
-                        </div>
-                        <div class="row airport">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-10">Gerry R. Ford Airport (GRR)</div>
+                        <div class="row hotels">
+                            <div class="col-sm-3">Other Options:</div>
+                            <div class="col-sm-4 hotel">
+                                <div>
+                                    <a href="http://www.traversecity.com" target="_blank">Traverse City Tourism</a>
+                                </div>
+                                <div>Visitor information, hotel listings</div>
+                                <div>231-947-1120</div>
+                            </div>
+                            <div class="col-sm-5 hotel condo">
+                                <div>If you want to stay in a house/condo for a group:</div>
+                                <div class="row text-center">
+                                    <a target="_blank" href="http://www.airbnb.com">AirBnB</a>
+                                    <a target="_blank" href="http://www.vrbo.com">VRBO</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

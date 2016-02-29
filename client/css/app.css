@@ -67,6 +67,7 @@ nav li:hover {
 }
 .cell {
   display: table-cell;
+  height: 100%;
   vertical-align: middle;
 }
 .heading {
@@ -99,6 +100,9 @@ nav li:hover {
 }
 .event-info .heading {
   color: #503952;
+}
+.event-info .map-wrap {
+  height: 60%;
 }
 .event-info .sub-heading {
   color: #ddb7ac;
@@ -154,9 +158,28 @@ nav li:hover {
 }
 .accomodations .heading {
   color: #503952;
+  font-size: 4rem;
+  margin-bottom: 30px;
+}
+.accomodations .sub-heading {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.accomodations .sub-heading span:nth-child(2) {
+  font-weight: bold;
+}
+.accomodations .hotels {
+  font-size: 1.5rem;
+}
+.accomodations .hotels .hotel.condo a {
+  display: block;
+}
+.accomodations a {
+  color: #503952;
 }
 .accomodations svg {
-  margin: 10px 0px;
+  display: block;
+  margin: 20px auto;
 }
 .rsvp {
   background-color: #503952;
@@ -196,47 +219,71 @@ nav li:hover {
   border: 1px solid #ddd;
   border-radius: 4px;
   color: white;
+  display: none;
   font-size: 2rem;
-  float: right;
-  margin: 8px 15px 8px 0px;
   padding: 9px 10px 6px 10px;
+  position: absolute;
+  top: 8px;
+  right: 15px;
 }
 @media (max-height: 500px) {
   html {
     font-size: .75rem;
   }
   .event-info .heading {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 @media (max-width: 785px) {
   html {
     font-size: .5rem;
   }
-  iframe {
-    display: none;
-  }
   nav {
     background-color: transparent;
+    padding: 0px;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul li {
+    background-color: #383838;
+    display: block;
+    font-size: 1.5rem;
+    padding: 15px 0px;
   }
   .mobile-menu-btn {
     background-color: #383838;
+    cursor: pointer;
+    display: inline-block;
+    z-index: 100;
+  }
+  .event-info iframe {
+    max-width: 400px;
+    display: block;
+    margin: auto;
+  }
+  .event-info .heading {
+    margin-bottom: 20px;
   }
   .event-info .content {
     text-align: center!important;
   }
+  .event-info .map-wrap {
+    height: 40%;
+  }
   .event-info .sub-heading {
     color: #ddb7ac;
     font-size: 4rem;
+    margin-top: 10px;
   }
   .event-info .text {
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-left: 10px;
   }
   .event-info .pink-text {
     color: #ddb7ac;
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
   .rehearsal {
     font-size: 2.5rem;
@@ -245,12 +292,19 @@ nav li:hover {
     font-size: 3rem;
   }
   .accomodations .hotels {
+    line-height: 2rem;
     text-align: center;
   }
-  .accomodations .hotels div {
-    display: inline-block;
+  .accomodations .hotels > div:first-child {
+    font-size: 2.5rem;
   }
-  .accomodations .airport {
+  .accomodations .hotels .hotel {
+    font-size: 1.75rem;
+  }
+  .accomodations .hotels .hotel.condo {
+    margin-top: 15px;
+  }
+  .accomodations .other-options {
     text-align: center;
   }
   .accomodations svg {
