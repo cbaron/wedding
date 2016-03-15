@@ -15,7 +15,7 @@ Object.assign( Router.prototype, MyObject.prototype, {
             } )
         } )
     },
-    
+
     applyResource( request, response, path, subPath ) {
 
         var filename = ( path[1] === "" && subPath ) ? 'index' : path[1],
@@ -24,17 +24,22 @@ Object.assign( Router.prototype, MyObject.prototype, {
         return new Promise( ( resolve, reject ) => {
 
             require('fs').stat( this.format( '%s/%s.js', __dirname, file ), err => {
+                var instance
+
                 if( err ) { 
                     if( err.code !== "ENOENT" ) return reject( err )
                     file = './resources/hyper/__proto__'
                 }
 
-                new ( require(file) )( {
+                instance = new ( require(file) )( {
                     request: request,
                     response: response,
-                    path: path,
-                } )[ request.method ]()
-                .catch( err => reject( err ) )
+                    path: path
+                } )
+
+                if( !instance[ request.method ] ) { this.handleFailure( response, new Error("Not Found"), 404, false ); return resolve() }
+
+                instance[ request.method ]().catch( err => reject( err ) )
             } )
         } )
     },
