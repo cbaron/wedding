@@ -69,12 +69,6 @@ Object.assign( Router.prototype, MyObject.prototype, {
         
         if( /text\/html/.test( request.headers.accept ) ) {
             return this.applyHTMLResource( request, response, path ).catch( err => this.handleFailure( response, err ) )
-        } else if( ( /application\/json/.test( request.headers.accept ) || /(POST|PATCH|DELETE)/.test(request.method) ) &&
-                   ( this.routes.REST[ path[1] ] || this.tables[ path[1] ] ) ) {
-            return this.applyResource( request, response, path ).catch( err => this.handleFailure( response, err ) )
-        } else if( /application\/ld\+json/.test( request.headers.accept ) && ( this.tables[ path[1] ] || path[1] === "" ) ) {
-            if( path[1] === "" ) path[1] === "index"
-            return this.applyResource( request, response, path, '/hyper' ).catch( err => this.handleFailure( response, err ) )
         }
 
         return this.handleFailure( response, new Error("Not Found"), 404 )
