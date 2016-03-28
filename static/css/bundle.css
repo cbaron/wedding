@@ -124,8 +124,18 @@ nav li:hover {
   color: #503952;
 }
 
-.event-info .map-wrap {
+.event-info .map-wrap,
+.event-info .content-wrap {
   height: 60%;
+}
+
+.event-info .content-wrap {
+  display: table;
+}
+
+.event-info .content {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .event-info .sub-heading {
@@ -161,6 +171,10 @@ nav li:hover {
   font-size: 2rem;
 }
 
+.rehearsal a {
+  color: #ddb7ac;
+}
+
 .rehearsal > div > div + div {
   margin-top: 30px;
 }
@@ -183,6 +197,10 @@ nav li:hover {
   margin-bottom: 5px;
   margin-top: 5px;
   width: 10px;
+}
+
+.rehearsal .thing + .thing {
+  margin-top: 15px;
 }
 
 .accomodations {

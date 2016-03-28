@@ -128,8 +128,18 @@ nav {
         color: @purple;
     }
 
-    .map-wrap {
+    
+    .map-wrap, .content-wrap {
         height: 60%;
+    }
+
+    .content-wrap {
+        display: table;
+    }
+
+    .content {
+        display: table-cell;
+        vertical-align: middle;
     }
 
     .sub-heading {
@@ -168,6 +178,10 @@ nav {
     color: white;
     font-size: 2rem;
 
+    a {
+        color: @pink;
+    }
+
     >div>div+div {
         margin-top: 30px;
     }
@@ -191,7 +205,10 @@ nav {
         margin-top: 5px;
         width: 10px;
     }
-    
+
+    .thing+.thing {
+        margin-top: 15px;
+    }
 }
 
 .accomodations {
