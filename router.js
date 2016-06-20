@@ -10,8 +10,15 @@ Object.assign( Router.prototype, MyObject.prototype, {
             var file = './resources/html'
 
             require('fs').stat( this.format( '%s/%s.js', __dirname, file ), err => {
+                var instance
+
                 if( err ) reject( err )
-                new ( require(file) )( { path: path, response: response } )[ request.method ]().catch( err => reject( err ) )
+
+                instance = new ( require(file) )( { request: request, response: response, path: path } )
+                
+                if( !instance[ request.method ] ) { this.handleFailure( response, new Error("Not Found"), 404, false ); return resolve() }
+
+                instance[ request.method ]().catch( err => reject( err ) )
             } )
         } )
     },
