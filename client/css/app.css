@@ -103,7 +103,7 @@ nav li:hover {
 }
 .event-info .map-wrap,
 .event-info .content-wrap {
-  height: 60%;
+  height: 50%;
 }
 .event-info .content-wrap {
   display: table;
