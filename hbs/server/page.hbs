@@ -7,9 +7,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script src="/static/js/babel-polyfill.js"></script>
-        <script src="/static/js/bundle.js"></script>
-
+        {{#if isProd}}
+            <script src="/static/js/bundle.js"></script>
+        {{else}}
+            <script src="/static/js/vendor.js"></script>
+            <script src="/static/js/debug.js"></script>
+        {{/if}}
 
         <title>{{title}}</title>
     </head>
@@ -69,6 +72,7 @@
                             <div class="text">700 Cottageview Dr.</div>
                             <div class="text">Traverse City, MI 49684</div>
                             <div class="pink-text">Ceremony at 3:30</div>
+                            <div class="pink-text">Music Starts at 2:30</div>
                             <div class="text">Dinner and Dancing to follow</div>
                         </div>
                     </div>
@@ -119,8 +123,8 @@
                     <div class="heading">Rehearsal Party</div>
                     <div class="col-sm-offset-3 col-sm-6 text-center">
                         <div class="thing">
-                            <div>For those traveling from afar, please join us for </div>
-                            <div>dinner and celebration on Friday night before our wedding.</div>
+                            <div>Those who are coming from out of town are </div>
+                            <div>invited to dinner and celebration on Friday night.</div>
                             <div>Please RSVP</div>
                         </div>
                         <div class="thing">
@@ -128,7 +132,7 @@
                             <span class="pinkball"></span>
                             <span>9.23.2016</span>
                             <span class="pinkball"></span>
-                            <span>Time TBD</span>
+                            <span>6:30 PM</span>
                         </div>
                         <div class="thing">
                             <div>
@@ -205,7 +209,13 @@
             <div class="table">
                 <div class="cell">
                     <div class="heading">RSVP</div>
-                    <div class="text-center">Coming Soon!</div>
+                    <div class="sub-heading">Please RSVP by August 13th!</div>
+                    <div class="col-xs-offset-1 col-xs-5">
+                        <button id="weddingRSVP" class="btn my-btn" type="button" data-target="#myModal">Wedding</button>
+                    </div>
+                    <div class="col-xs-5">
+                        <button id="rehearsalRSVP" class="btn my-btn" type="button" data-target="#myModal">Rehearsal</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,6 +228,54 @@
                         <div>Alex watched Chris hurt his knee.</div>
                         <div>Chris asked Alex out after group-hanging at a ping pong bar.</div>
                         <div>Now they have two cats and live in Grand Rapids, MI where they are plotting to start a farm.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                        <h4 id="modalTitle" class="modal-title"></h4>
+                    </div>
+                    <div id="modalBody" class="modal-body">
+                        <form>
+                            <div class="form-group"
+                                <label>Name(s) attending</label>
+                                <input type="text" class="form-control" id="names">
+                            </div>    
+                            <div class="form-group"
+                                <label>Name(s) attending</label>
+                                <input type="text" class="form-control" id="names">
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="accepts" type="checkbox"> Happily Accepts
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="decline" type="checkbox"> Regretfully Decline
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group"
+                                <label>Number attending</label>
+                                <input type="number" class="form-control" id="numberAttending">
+                            </div>
+                            <div class="form-group"
+                                <label>Number of Vegans/Vegetarians</label>
+                                <input type="number" class="form-control" id="numberAttending">
+                            </div>
+                        <form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">RSVP</button>
                     </div>
                 </div>
             </div>

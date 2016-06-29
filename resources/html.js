@@ -2,7 +2,10 @@ var Html = function( data ) { return Object.assign( this, data ) }
 
 Object.assign( Html.prototype, {
 
-    GET() { return this.respond( this.page( { title: "Alex and Chris" } ) ) },
+    GET() { return this.respond( this.page( {
+        isProd: ( process.env.NODE_ENV === "production" ) ? true : false,
+        title: "Alex and Chris"
+    } ) ) },
 
     getHeaders( length ) {
         return {

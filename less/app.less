@@ -259,8 +259,23 @@ nav {
     background-color: @purple; 
     color: white;
 
-    .text-center {
+    .heading {
+        margin-bottom: 30px;
+    }
+
+    .sub-heading {
         font-size: 4rem;
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    .my-btn {
+        font-size: 4rem;
+
+        &:focus,
+        &:hover {
+            color: @purple;
+        }
     }
 }
 
@@ -309,6 +324,17 @@ nav {
     position: absolute;
     top: 8px;
     right: 15px;
+}
+
+.my-btn {
+    background-color: transparent;
+    border: 1px solid;
+    outline: none;
+
+    &:focus,
+    &:hover {
+        background-color: white;
+    }
 }
 
 @media (max-height: 500px) {
@@ -360,32 +386,32 @@ nav {
         }
 
         .heading {
-            margin-bottom: 20px;
+            margin-bottom: 40px;
         }
 
         .content {
             text-align: center!important;
         }
 
-        .map-wrap {
+        .map-wrap, .content-wrap {
             height: 40%;
         }
 
         .sub-heading {
             color: @pink;
-            font-size: 4rem;
+            font-size: 5rem;
             margin-top: 10px;
         }
         
         .text {
             color: white;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
             margin-left: 10px;
         }
         
         .pink-text {
             color: @pink;
-            font-size: 1.5rem;
+            font-size: 2.5rem;
         }
 
     }

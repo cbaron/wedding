@@ -83,7 +83,7 @@ Object.assign( Router.prototype, MyObject.prototype, {
     },
 
     initialize() {
-        this.staticFolder = new (require('node-static').Server)()
+        this.staticFolder = new (require('node-static').Server)( undefined, { gzip: true } )
 
         return this
     },

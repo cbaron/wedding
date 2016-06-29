@@ -25,18 +25,24 @@
     "browserify": "^12.0.1",
     "grunt-contrib-handlebars": "^0.11.0",
     "grunt-contrib-watch": "^0.6.1",
-    "gulp-babel": "^6.1.2",
-    "gulp-concat-css": "^2.2.0",
-    "gulp-less": "^3.0.5",
-    "gulp-plumber": "^1.0.1",
-    "gulp-watch": "^4.3.5",
-    "vinyl-source-stream": "^1.1.0"
+    "less": "^2.7.1",
+    "parallelshell": "^2.0.0",
+    "watch": "^0.19.1"
   },
   "license": "BSD-3-Clause",
   "name": "Wedding",
   "repository": {
     "type": "git",
     "url": "https://github.com/cbaron/wedding.git"
+  },
+  "scripts": {
+    "build:js": "browserify client/js/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs > static/js/bundle.js && gzip -c static/js/bundle.js > static/js/bundle.js.gz",
+    "build:js-debug": "browserify client/js/main.js -o static/js/debug.js -x backbone -x bootstrap -x jquery -x underscore -d -t [ babelify --presets [ es2015 ] --ignore [ /node_modules/, /vendor/ ] ]",
+    "build:less": "paste -s -d '\\n' less/*.less | lessc -x - > static/css/bundle.css",
+    "build:vendor": "browserify -r backbone -r bootstrap -r jquery -r -r underscore > static/js/vendor.js",
+    "build:watch": "parallelshell 'npm run watch:js-debug' 'npm run watch:less'",
+    "watch:js-debug": "watch 'npm run build:js-debug' client/js --ignoreDotFiles",
+    "watch:less": "watch 'npm run build:less' less --ignoreDotFiles"
   },
   "version": "0.0.1"
 }
