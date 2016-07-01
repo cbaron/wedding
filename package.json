@@ -7,6 +7,7 @@
     "babel-polyfill": "^6.3.14",
     "backbone": "^1.2.3",
     "bootstrap": "^3.3.6",
+    "email": "^0.2.6",
     "grunt": "^0.4.5",
     "gulp": "^3.9.0",
     "handlebars": "^4.0.5",

@@ -211,10 +211,10 @@
                     <div class="heading">RSVP</div>
                     <div class="sub-heading">Please RSVP by August 13th!</div>
                     <div class="col-xs-offset-1 col-xs-5">
-                        <button id="weddingRSVP" class="btn my-btn" type="button" data-target="#myModal">Wedding</button>
+                        <button id="weddingRSVP" class="btn my-btn" type="button">Wedding</button>
                     </div>
                     <div class="col-xs-5">
-                        <button id="rehearsalRSVP" class="btn my-btn" type="button" data-target="#myModal">Rehearsal</button>
+                        <button id="rehearsalRSVP" class="btn my-btn" type="button">Rehearsal</button>
                     </div>
                 </div>
             </div>
@@ -232,7 +232,7 @@
                 </div>
             </div>
         </div>
-        <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+        <div id="myModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -241,10 +241,6 @@
                     </div>
                     <div id="modalBody" class="modal-body">
                         <form>
-                            <div class="form-group"
-                                <label>Name(s) attending</label>
-                                <input type="text" class="form-control" id="names">
-                            </div>    
                             <div class="form-group"
                                 <label>Name(s) attending</label>
                                 <input type="text" class="form-control" id="names">
@@ -259,23 +255,27 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input id="decline" type="checkbox"> Regretfully Decline
+                                        <input id="declines" type="checkbox"> Regretfully Decline
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group"
-                                <label>Number attending</label>
-                                <input type="number" class="form-control" id="numberAttending">
+                            <div class="form-group clearfix">
+                                <label class="pull-left">Number attending</label>
+                                <div class="col-xs-3 pull-right">
+                                    <input type="text" class="form-control" maxlength="1" id="number">
+                                </div>
                             </div>
-                            <div class="form-group"
-                                <label>Number of Vegans/Vegetarians</label>
-                                <input type="number" class="form-control" id="numberAttending">
+                            <div class="form-group clearfix">
+                                <label class="pull-left">Number of Vegans/Vegetarians</label>
+                                <div class="col-xs-3 pull-right">
+                                    <input type="text" class="form-control" maxlength="1" id="veg">
+                                </div>
                             </div>
                         <form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">RSVP</button>
+                        <button id="rsvpBtn" type="button" class="btn btn-primary">RSVP</button>
                     </div>
                 </div>
             </div>

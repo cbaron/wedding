@@ -9,6 +9,14 @@ Object.assign( Page.prototype, {
         this.body = this.$('body')
         this.content = { }
 
+        this.names = this.$('#names')
+        this.accepts = this.$('#accepts').on( 'click', () => this.declines.prop( 'checked', false ) )
+        this.declines = this.$('#declines').on( 'click', () => this.accepts.prop( 'checked', false ) )
+        this.number = this.$('#number')
+        this.veg = this.$('#veg')
+
+        this.rsvpType = undefined
+
         this.body.children('div').each( ( i, el ) => { var $el = this.$(el); this.content[ $el.data('content') ] = $el } )
 
         this.body.find('nav ul li' ).each( ( i, el ) => {
@@ -31,8 +39,33 @@ Object.assign( Page.prototype, {
         if( this.$(window).width() <= 785 ) {
             this.$('iframe').attr( { src: this.$('iframe').attr('src').slice( 0, -1 ) + '3' } )
         }
-        
+
+        this.$('#weddingRSVP').on( 'click', () => {
+            this.$('#modalTitle').text('Wedding RSVP')
+            if( this.rsvpType !== 'Wedding' ) this.resetModal()
+            this.rsvpType = 'Wedding'
+            this.$('#myModal').modal()
+        } )
+
+        this.$('#rehearsalRSVP').on( 'click', () => {
+            this.$('#modalTitle').text('Rehearsal RSVP')
+            if( this.rsvpType !== 'Rehearsal' ) this.resetModal()
+            this.rsvpType = 'Rehearsal'
+            this.$('#myModal').modal()
+        } )
+
+        this.$('#rsvpBtn').on( 'click', () => {
+        } )
+            
         return this
+    },
+
+    resetModal() {
+        this.names.val('').closest('.form-group').removeClass('has-error')
+        this.accepts.prop( 'checked', false ).closest('.form-group').removeClass('has-error')
+        this.declines.prop( 'checked', false ).closest('.form-group').removeClass('has-error')
+        this.number.val('').closest('.form-group').removeClass('has-error')
+        this.veg.val('').closest('.form-group').removeClass('has-error')
     }
 
 } )
