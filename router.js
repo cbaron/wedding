@@ -43,7 +43,9 @@ Object.assign( Router.prototype, MyObject.prototype, {
 
                 if( !instance[ request.method ] ) { this.handleFailure( response, new Error("Not Found"), 404 ); return resolve() }
 
-                instance[ request.method ]().fail( err => reject( err ) ).done()
+                instance[ request.method ]()
+                    .fail( err => { this.handleFailure( response, err, 500 ); return reject(err) } )
+                    .done()
             } )
         } )
     },

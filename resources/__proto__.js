@@ -12,9 +12,8 @@ Object.assign( Resource.prototype, MyObject.prototype, {
         'Keep-Alive': 'timeout=50, max=100',
     },
 
-    handleIncomingData: function( someData ) {
-
-        this.body += someData;
+    handleIncomingData( someData ) {
+        this.body += someData
 
         if( this.body.length > 1e10 ) {
             this.request.connection.destroy();
@@ -23,21 +22,14 @@ Object.assign( Resource.prototype, MyObject.prototype, {
     },
 
     handleRequestEnd: function() {
-
         if( this.body.length === 0 ) this.body = "{}"
 
         try {
-            this.body = JSON.parse( this.body );
+            this.body = JSON.parse( this.body )
+            return this.requestEnded.resolve()
         } catch( e ) {
-            return this.requestEnded.reject( 'Unable to parse request : ' + e );
+            return this.requestEnded.reject( 'Unable to parse request : ' + e )
         }
-
-        if( ! this._.has( this.validate, this.request.method ) ) return this.requestEnded.reject('Invalid Request')
-
-        this.Q.fcall( this.validate[ this.request.method ].bind(this) )
-            .then( this.requestEnded.resolve.bind(this) )
-            .fail( this.requestEnded.reject.bind(this) )
-            .done();
     },
 
     respond: function( data ) {
@@ -47,16 +39,15 @@ Object.assign( Resource.prototype, MyObject.prototype, {
     },
 
     slurpBody() {
-
-        this.requestEnded = this.Q.defer();
+        
+        this.requestEnded = this.Q.defer()
 
         this.body = "";
         
-        this.request.on( "data", this.handleIncomingData.bind(this) )
-
         this.request.on( "end", this.handleRequestEnd.bind(this) )
-
-        return this.requestEnded.promise;
+        this.request.on( "data", this.handleIncomingData.bind(this) )
+        
+        return this.requestEnded.promise
     }
 
 } )

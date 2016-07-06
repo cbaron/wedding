@@ -7,14 +7,15 @@ Object.assign( RSVP.prototype, Base.prototype, {
 
     POST() {
         return this.slurpBody().then( () => {
-            [ 'names', 'accepts', 'number', 'veg', 'type' ].forEach( key => { if( this.body[ key ] === undefined ) throw Error("Sorry Mate") } )
+            [ 'names', 'accepts', 'number', 'veg', 'type' ].forEach( key => { if( this.body[ key ] === undefined ) throw new Error("Sorry Mate") } )
 
             return this.Q( this.Email.send( {
-                to: 'rsvp@alexgandchrisb.com',
+                to: 'topherbaron@gmail.com',
                 from: 'cbaron@alexgandchrisb.com',
                 subject: `${this.body.type} RSVP`,
                 body: this.generateEmailBody() } )
-            ).fail( err => console.log("Error generating confirmation email : " + err.stack || err ) ).done()
+            )
+            .then( () => this.respond( { body: true } ) )
         } )
     },
 

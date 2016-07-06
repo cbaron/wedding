@@ -16,19 +16,19 @@
 @pink: #ddb7ac;
 @purple: #503952;
 
-.slide-down {
-    animation: slide-down 0.5s forwards;
-    -webkit-animation: slide-down 0.5s forwards;
+.slide-right {
+    animation: slide-right 1s forwards;
+    -webkit-animation: slide-right 1s forwards;
 }
 
-@keyframes slide-down {
-    0% { transform: translateY(100%); }
-    100% { transform: translateY(0%); }
+@keyframes slide-right {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
 }
 
-@-webkit-keyframes slide-down {
-    0% { -webkit-transform: translateY(100%); }
-    100% { -webkit-transform: translateY(0%); }
+@-webkit-keyframes slide-right {
+    0% { -webkit-transform: translateX(-100%); }
+    100% { -webkit-transform: translateX(0%); }
 }
 
 .error {
@@ -38,9 +38,10 @@
 }
 
 .success {
+    color: #2e6da4;
     display: none;
-    font-size: 3rem;
-    text-align: center;
+    float: left;
+    font-size: 1.5rem;
 }
 
 .modal-backdrop {
@@ -49,7 +50,7 @@
 }
 
 &.has-spinner {
-    color: transparent;
+    color: transparent !important;
     position: relative;
 }
 

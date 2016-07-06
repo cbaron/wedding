@@ -18,6 +18,7 @@ Object.assign( Page.prototype, {
         this.number = this.$('#number')
         this.veg = this.$('#veg')
 
+        this.myModal = this.$('#myModal')
         this.error = this.$('#error')
         this.rsvpBtn = this.$('#rsvpBtn')
         this.rsvpType = undefined
@@ -50,21 +51,29 @@ Object.assign( Page.prototype, {
             this.$('#modalTitle').text('Wedding RSVP')
             if( this.rsvpType !== 'Wedding' ) this.resetModal()
             this.rsvpType = 'Wedding'
-            this.$('#myModal').modal()
+            this.myModal.modal()
         } )
 
         this.$('#rehearsalRSVP').on( 'click', () => {
             this.$('#modalTitle').text('Rehearsal RSVP')
             if( this.rsvpType !== 'Rehearsal' ) this.resetModal()
             this.rsvpType = 'Rehearsal'
-            this.$('#myModal').modal()
+            this.myModal.modal()
         } )
 
         this.applyRsvpBtn()
 
+        this.accepts.on('focus', () => {
+            this.accepts.closest('.form-group').removeClass('has-error')
+            this.declines.closest('.form-group').removeClass('has-error')
+        } )
+
+        this.declines.on('focus', () => {
+            this.accepts.closest('.form-group').removeClass('has-error')
+            this.declines.closest('.form-group').removeClass('has-error')
+        } )
+        
         this.names.on('focus', () => this.names.closest('.form-group').removeClass('has-error') )
-        this.accepts.on('focus', () => this.accepts.closest('.form-group').removeClass('has-error') )
-        this.declines.on('focus', () => this.declines.closest('.form-group').removeClass('has-error') )
         this.number.on('focus', () => this.number.closest('.form-group').removeClass('has-error') )
         this.veg.on('focus', () => this.veg.closest('.form-group').removeClass('has-error') )
 
@@ -87,16 +96,18 @@ Object.assign( Page.prototype, {
         this.rsvpBtn.addClass('has-spinner')
         this.rsvpBtn.append( this.spinner.spin().el )
 
-        this.$.post(
-            '/rsvp',
-            JSON.stringify( {
+        this.$.ajax( {
+            method: "POST",
+            url: '/rsvp',
+            contentType: 'application/json',
+            data: JSON.stringify( {
                 names: this.names.val(),
                 accepts: this.accepts.prop('checked'),
                 number: this.number.val(),
                 veg: this.veg.val(),
                 type: this.rsvpType
-            } )
-        )
+            } ),
+        } )
         .done( () => this.onRsvpDone() )
         .fail( () => this.onRsvpFail() )
         .always( () => this.onRsvpAlways() )
@@ -108,7 +119,12 @@ Object.assign( Page.prototype, {
     },
     
     onRsvpDone() {
-        this.success.addClass('slide-down')
+        this.success.addClass('slide-right').show()
+        this.myModal.one( 'hidden.bs.modal', () => {
+            this.resetModal()
+            this.applyRsvpBtn()
+            this.success.hide().removeClass('slide-right')
+        } )
     },
 
     onRsvpFail() {
@@ -125,14 +141,16 @@ Object.assign( Page.prototype, {
     },
 
     validate() {
+        var declined = this.declines.prop('checked')
+
         if( ! this.$.trim( this.names.val() ) ) { this.names.closest('.form-group').addClass('has-error'); return false }
-        if( this.accepts.prop('checked') === false && this.declines.prop('checked') === false ) {
+        if( this.accepts.prop('checked') === false && declined === false ) {
             this.accepts.closest('.form-group').addClass('has-error')
             this.declines.closest('.form-group').addClass('has-error')
             return false
         }
-        if( isNaN( parseInt( this.number.val() ) ) ) { this.number.closest('.form-group').addClass('has-error'); return false }
-        if( isNaN( parseInt( this.veg.val() ) ) ) { this.veg.val('').closest('.form-group').addClass('has-error'); return false }
+        if( !declined && isNaN( parseInt( this.number.val() ) ) ) { this.number.closest('.form-group').addClass('has-error'); return false }
+        if( !declined && isNaN( parseInt( this.veg.val() ) ) ) { this.veg.val('').closest('.form-group').addClass('has-error'); return false }
         return true
     }
 
