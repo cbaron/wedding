@@ -6,20 +6,22 @@ Object.assign( Page.prototype, {
 
     Spinner: require('../spin'),
 
-    applyRsvpBtn() { this.$('#rsvpBtn').one( 'click', () => this.onRsvp() ) },
+    applyRsvpBtn() { this.rsvpBtn.one( 'click', () => this.onRsvp() ) },
 
     initialize() {
 
         this.body = this.$('body')
         this.content = { }
-
         this.names = this.$('#names')
         this.accepts = this.$('#accepts').on( 'click', () => this.declines.prop( 'checked', false ) )
         this.declines = this.$('#declines').on( 'click', () => this.accepts.prop( 'checked', false ) )
         this.number = this.$('#number')
         this.veg = this.$('#veg')
 
+        this.error = this.$('#error')
+        this.rsvpBtn = this.$('#rsvpBtn')
         this.rsvpType = undefined
+        this.success = this.$('#success')
 
         this.body.children('div').each( ( i, el ) => { var $el = this.$(el); this.content[ $el.data('content') ] = $el } )
 
@@ -66,21 +68,52 @@ Object.assign( Page.prototype, {
         this.number.on('focus', () => this.number.closest('.form-group').removeClass('has-error') )
         this.veg.on('focus', () => this.veg.closest('.form-group').removeClass('has-error') )
 
+        this.spinner = new this.Spinner( {
+            color: '#fff',
+            length: 15,
+            scale: 0.25,
+            width: 5
+        } ).spin()
+
         return this
     },
 
     onRsvp() {
-        if( ! this.validate() ) { this.applyRsvpBtn() }
+
+        this.error.hide()
+
+        if( ! this.validate() ) return this.applyRsvpBtn()
+        
+        this.rsvpBtn.addClass('has-spinner')
+        this.rsvpBtn.append( this.spinner.spin().el )
 
         this.$.post(
             '/rsvp',
             JSON.stringify( {
                 names: this.names.val(),
-                accepts this.accepts.prop('checked'),
-                number: this.numer.val(),
-                veg: this.veg.val()
+                accepts: this.accepts.prop('checked'),
+                number: this.number.val(),
+                veg: this.veg.val(),
+                type: this.rsvpType
             } )
-        ).done(
+        )
+        .done( () => this.onRsvpDone() )
+        .fail( () => this.onRsvpFail() )
+        .always( () => this.onRsvpAlways() )
+    },
+
+    onRsvpAlways() {
+        this.rsvpBtn.removeClass('has-spinner')
+        this.spinner.stop()
+    },
+    
+    onRsvpDone() {
+        this.success.addClass('slide-down')
+    },
+
+    onRsvpFail() {
+        this.error.show()
+        this.applyRsvpBtn()
     },
 
     resetModal() {
@@ -92,7 +125,7 @@ Object.assign( Page.prototype, {
     },
 
     validate() {
-        if( this.$.trim( this.names.val() ) ) { this.names.closest('.form-group').addClass('has-error'); return false }
+        if( ! this.$.trim( this.names.val() ) ) { this.names.closest('.form-group').addClass('has-error'); return false }
         if( this.accepts.prop('checked') === false && this.declines.prop('checked') === false ) {
             this.accepts.closest('.form-group').addClass('has-error')
             this.declines.closest('.form-group').addClass('has-error')
@@ -100,6 +133,7 @@ Object.assign( Page.prototype, {
         }
         if( isNaN( parseInt( this.number.val() ) ) ) { this.number.closest('.form-group').addClass('has-error'); return false }
         if( isNaN( parseInt( this.veg.val() ) ) ) { this.veg.val('').closest('.form-group').addClass('has-error'); return false }
+        return true
     }
 
 } )

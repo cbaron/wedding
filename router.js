@@ -23,20 +23,17 @@ Object.assign( Router.prototype, MyObject.prototype, {
         } )
     },
 
-    applyResource( request, response, path, subPath ) {
+    applyResource( request, response, path ) {
 
-        var filename = ( path[1] === "" && subPath ) ? 'index' : path[1],
-            file = this.format('./resources%s/%s', subPath || '', filename )
+        var filename = path[1],
+            file = this.format('./resources/%s', filename )
 
         return new Promise( ( resolve, reject ) => {
 
             require('fs').stat( this.format( '%s/%s.js', __dirname, file ), err => {
                 var instance
 
-                if( err ) { 
-                    if( err.code !== "ENOENT" ) return reject( err )
-                    file = './resources/hyper/__proto__'
-                }
+                if( err ) return reject( err )
 
                 instance = new ( require(file) )( {
                     request: request,
@@ -44,9 +41,9 @@ Object.assign( Router.prototype, MyObject.prototype, {
                     path: path
                 } )
 
-                if( !instance[ request.method ] ) { this.handleFailure( response, new Error("Not Found"), 404, false ); return resolve() }
+                if( !instance[ request.method ] ) { this.handleFailure( response, new Error("Not Found"), 404 ); return resolve() }
 
-                instance[ request.method ]().catch( err => reject( err ) )
+                instance[ request.method ]().fail( err => reject( err ) ).done()
             } )
         } )
     },
@@ -76,6 +73,10 @@ Object.assign( Router.prototype, MyObject.prototype, {
         
         if( /text\/html/.test( request.headers.accept ) ) {
             return this.applyHTMLResource( request, response, path ).catch( err => this.handleFailure( response, err ) )
+        }
+
+        if( request.method === "POST" && path[1] === "rsvp" ) {
+            return this.applyResource( request, response, path )
         }
 
         return this.handleFailure( response, new Error("Not Found"), 404 )

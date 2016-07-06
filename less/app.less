@@ -16,9 +16,41 @@
 @pink: #ddb7ac;
 @purple: #503952;
 
+.slide-down {
+    animation: slide-down 0.5s forwards;
+    -webkit-animation: slide-down 0.5s forwards;
+}
+
+@keyframes slide-down {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes slide-down {
+    0% { -webkit-transform: translateY(100%); }
+    100% { -webkit-transform: translateY(0%); }
+}
+
+.error {
+    color: red;
+    display: none;
+    float: left;
+}
+
+.success {
+    display: none;
+    font-size: 3rem;
+    text-align: center;
+}
+
 .modal-backdrop {
     bottom: 0;
     position: fixed;
+}
+
+&.has-spinner {
+    color: transparent;
+    position: relative;
 }
 
 .clearfix label {
@@ -263,6 +295,7 @@ nav {
 .rsvp {
     background-color: @purple; 
     color: white;
+    text-align: center;
 
     .heading {
         margin-bottom: 30px;

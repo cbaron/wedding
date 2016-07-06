@@ -46,7 +46,7 @@ Object.assign( Resource.prototype, MyObject.prototype, {
         this.response.end( data.body );
     },
 
-    slurpBody: function() {
+    slurpBody() {
 
         this.requestEnded = this.Q.defer();
 
