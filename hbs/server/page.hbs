@@ -240,10 +240,14 @@
                         <h4 id="modalTitle" class="modal-title"></h4>
                     </div>
                     <div id="modalBody" class="modal-body">
+                        <div id="rehearsalSubHeading" class="sub-heading">If you received an invitation for the Rehearsal Dinner, please RSVP here.</div>
                         <form id="form">
                             <div class="form-group"
                                 <label>Name(s) attending</label>
-                                <input type="text" class="form-control" id="names">
+                                <div class="relative">
+                                    <input type="text" class="form-control" id="names">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">
@@ -263,12 +267,14 @@
                                 <label class="pull-left">Number attending</label>
                                 <div class="col-xs-3 pull-right">
                                     <input type="text" class="form-control" maxlength="1" id="number">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                                 </div>
                             </div>
                             <div class="form-group clearfix">
                                 <label class="pull-left">Number of Vegans/Vegetarians</label>
                                 <div class="col-xs-3 pull-right">
                                     <input type="text" class="form-control" maxlength="1" id="veg">
+                                    <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                                 </div>
                             </div>
                         <form>

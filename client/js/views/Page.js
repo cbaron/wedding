@@ -49,6 +49,7 @@ Object.assign( Page.prototype, {
 
         this.$('#weddingRSVP').on( 'click', () => {
             this.$('#modalTitle').text('Wedding RSVP')
+            this.$('#rehearsalSubHeading').hide()
             if( this.rsvpType !== 'Wedding' ) this.resetModal()
             this.rsvpType = 'Wedding'
             this.myModal.modal()
@@ -56,6 +57,7 @@ Object.assign( Page.prototype, {
 
         this.$('#rehearsalRSVP').on( 'click', () => {
             this.$('#modalTitle').text('Rehearsal RSVP')
+            this.$('#rehearsalSubHeading').show()
             if( this.rsvpType !== 'Rehearsal' ) this.resetModal()
             this.rsvpType = 'Rehearsal'
             this.myModal.modal()
