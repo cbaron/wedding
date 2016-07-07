@@ -10,8 +10,8 @@ Object.assign( RSVP.prototype, Base.prototype, {
             [ 'names', 'accepts', 'number', 'veg', 'type' ].forEach( key => { if( this.body[ key ] === undefined ) throw new Error("Sorry Mate") } )
 
             return this.Q( this.Email.send( {
-                to: 'topherbaron@gmail.com',
-                from: 'cbaron@alexgandchrisb.com',
+                to: 'rsvp@alexgandchrisb@gmail.com',
+                from: 'root@alexgandchrisb.com',
                 subject: `${this.body.type} RSVP`,
                 body: this.generateEmailBody() } )
             )

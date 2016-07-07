@@ -29,6 +29,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "less": "^2.7.1",
     "parallelshell": "^2.0.0",
+    "uglifyjs": "^2.4.10",
     "watch": "^0.19.1"
   },
   "license": "BSD-3-Clause",
